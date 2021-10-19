@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>New Contact</h2>
+<div mat-dialog-content>
+  <form (ngSubmit)="save()">
+
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Full Name</mat-label>
+        <input matInput  [(ngModel)]="_edit_contact.full_name" name="Full Name" placeholder="Enter full name">
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Mobile number</mat-label>
+        <input matInput [(ngModel)]="_edit_contact.mobile_number" name="Mobile number" placeholder="Enter Mobile Number" >
+      </mat-form-field>
+    </p>
+
+    <input class="mat-raised-button mat-primary" type="submit" value="Submit">
+  </form>
+</div>
+
+

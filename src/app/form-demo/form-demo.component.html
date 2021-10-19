@@ -1,0 +1,63 @@
+<p>demo-validation works!</p>
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
+  <p>
+    <label for="firstname">First Name </label>
+    <input type="text" id="firstname" name="firstname" formControlName="firstname">
+  </p>
+
+  <div
+    *ngIf="!firstname?.valid && (firstname?.dirty ||firstname?.touched)">
+    <div [hidden]="!firstname?.errors?.required">
+      First Name is required
+    </div>
+    <div [hidden]="!firstname?.errors?.minlength">
+      Min Length is 10
+    </div>
+  </div>
+  <p>
+    <label for="lastname">Last Name </label>
+    <input type="text" id="lastname" name="lastname" formControlName="lastname">
+  </p>
+
+  <div *ngIf="!lastname?.valid && (lastname?.dirty ||lastname?.touched)">
+    <div [hidden]="!lastname?.errors?.pattern">
+      Only characters are allowed
+    </div>
+    <div [hidden]="lastname?.errors?.maxLength">
+      Max length allowed is {{lastname?.errors?.maxlength?.requiredLength}}
+    </div>
+    <div [hidden]="!lastname?.errors?.required">
+      Last Name is required
+    </div>
+  </div>
+
+  <!-- <p>
+    <label for="email">Email </label>
+    <input type="text" id="email" name="email" formControlName="email">
+  </p>
+  <div *ngIf="!email.valid && (email.dirty ||email.touched)">
+    <div [hidden]="!email.errors.required">
+      email is required
+    </div>
+    <div [hidden]="!email.errors.email">
+      invalid email id
+    </div>
+  </div>
+    -->
+  <!-- <p>
+    <label for="gender">Geneder </label>
+    <input type="radio" value="male" id="gender" name="gender" formControlName="gender"> Male
+    <input type="radio" value="female" id="gender" name="gender" formControlName="gender"> Female
+  </p>
+  <div *ngIf="!gender.valid && (gender.dirty ||gender.touched)">
+    <div [hidden]="!gender.errors.required">
+      gender is required
+    </div>
+  </div>        -->
+  <p>
+    <button type="submit" [disabled]="!contactForm?.valid">Submit</button>
+  </p>
+</form>
+
+<p>{{contactForm.valid}} </p>
+

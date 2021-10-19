@@ -1,1 +1,70 @@
-<app-home></app-home>
+<div>
+  <mat-toolbar class="mat-primary">
+    <span class="main-title"><strong>Phone Book</strong></span>
+  </mat-toolbar>
+  <mat-card>
+
+    <mat-card-title class="mat-card-title">
+      <p><b>Contacts</b></p>
+    </mat-card-title>
+
+
+    <mat-card-content style="padding: 5px; display:flex; flex-direction: row;">
+
+      <mat-form-field class="mat-input-element" color="primary" appearance="outline">
+
+        <mat-label>Search</mat-label>
+        <input matInput placeholder="Enter Name or Mobile number"
+               class="form-control" name="search" id="search" [(ngModel)]="searchString">
+        <button matSuffix mat-icon-button (click)="performSearch()">
+          <mat-icon>search</mat-icon>
+        </button>
+
+      </mat-form-field>
+
+      <span class="row-spacer"></span>
+
+      <button mat-fab color="primary" (click)="toggleSort()">
+        <mat-icon>sort</mat-icon>
+      </button>
+
+      <span class="row-spacer"></span>
+
+      <button mat-fab color="primary" routerLink="./contactEditor" (click)="newContact()">
+        <mat-icon>add</mat-icon>
+      </button>
+
+    </mat-card-content>
+
+
+    <mat-card-content>
+
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let contact of displayContacts" class="mat-expansion-panel" hideToggle>
+
+          <mat-expansion-panel-header>
+            <mat-panel-title class="mat-expansion-panel-text"><strong>{{contact.full_name}}</strong></mat-panel-title>
+          </mat-expansion-panel-header>
+
+            <p class="mat-expansion-panel-text">{{contact.mobile_number}}</p>
+
+            <div style="flex: auto; flex-direction: row;">
+
+              <button mat-stroked-button (click)="deleteContact(contact)">
+                <span>Delete</span>
+              </button>
+
+              <span class="row-spacer"></span>
+
+              <button mat-raised-button routerLink="./contactEditor" color="primary"
+                      (click)="editContact(contact)"><span>Edit</span></button>
+
+            </div>
+        </mat-expansion-panel>
+
+      </mat-accordion>
+
+    </mat-card-content>
+
+  </mat-card>
+</div>
